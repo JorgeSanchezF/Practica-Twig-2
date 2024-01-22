@@ -1,0 +1,40 @@
+{% extends "plantilla.twig" %}
+
+{% block title %}Productos
+{% endblock %}
+
+
+{% block main %}
+	<h3>Productos</h3>
+	<a class="boton-crear" href="crear-producto">Crear producto</a>
+
+	<table>
+		<thead>
+			<tr>
+				<th>Nombre</th>
+				<th>Descripcion</th>
+				<th>Precio</th>
+				<th>Stock</th>
+				<th>Acciones</th>
+			</tr>
+		</thead>
+		<tbody>
+			{# recoger lista de productos de la base de datos (hecho) #}
+			{% for i in productos %}
+				<tr>
+					<td>{{i.nombre}}</td>
+					<td>{{i.descripcion}}</td>
+					<td>{{i.precio}}€</td>
+					<td>{{i.stock}}</td>
+					<td>
+						<a class='botones-tabla' href='editar-producto?id={{i.id}}'>Editar</a>
+					</td>
+					<td>
+						<a class='botones-tabla' href='eliminar-producto?id={{i.id}}'>Eliminar</a>
+					</td>
+				</tr>
+
+			{% endfor %}
+		</tbody>
+	</table>
+{% endblock %}

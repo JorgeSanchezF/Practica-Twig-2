@@ -1,0 +1,20 @@
+{% extends "plantilla.twig" %}
+
+{% block title %}Editar producto
+{% endblock %}
+{% block main %}
+	<h3>Crea un producto</h3>
+	<a href="productos">Atras</a>
+	<form action="update-producto?id={{id}}" method="post">
+		<input type="hidden" name="id" id="id">
+		<label for="nombre">Nombre:</label>
+		<input type="text" name="nombre" id="nombre">
+		<label for="descripcion">Descripcion:</label>
+		<input type="text" name="descripcion" id="descripcion">
+		<label for="precio">Precio:</label>
+		<input type="number" name="precio" id="precio">
+		<label for="stock">Stock:</label>
+		<input type="number" name="stock" id="stock">
+		<button type="submit" class="boton-formulario">Editar</button>
+	</form>
+{% endblock %}
