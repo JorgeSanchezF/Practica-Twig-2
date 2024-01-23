@@ -5,8 +5,35 @@ class ProductosController implements Controller
 {
     public static function index()
     {
+        //funcion que se encarga de comparar los productos dentro del array
+        function compararPorPrecio($a, $b)
+        {
+            return floatval($a['precio']) - floatval($b['precio']);
+        }
+
+        //funcion que se encarga de comparar los productos dentro del array
+        function compararPorNombre($a, $b)
+        {
+            return strcmp($a['nombre'], $b['nombre']);
+        }
+        //funcion que se encarga de comparar los productos dentro del array
+        function compararPorStock($a, $b)
+        {
+            return floatval($b['precio']) - floatval($a['stock']);
+        }
         $producto = new Producto;
         $productos = $producto->findAll();
+        //si hay variable filtro en la url comprueba si es de precio o de nombre y llama a funcion
+        if (isset($_GET['filtro']) && $_GET['filtro'] == 'precio') {
+            usort($productos, 'compararPorPrecio');
+        }
+        if (isset($_GET['filtro']) && $_GET['filtro'] == 'nombre') {
+            usort($productos, 'compararPorNombre');
+        }
+        if (isset($_GET['filtro']) && $_GET['filtro'] == 'stock') {
+            usort($productos, 'compararPorStock');
+        }
+
         echo $GLOBALS['twig']->render(
             'producto/productos.twig',
             ['productos' => $productos]
