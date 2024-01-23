@@ -79,7 +79,7 @@ class Producto implements Model
     }
     public function store($datos)
     {
-        
+
         $database = new Database("root", "", "localhost", 3308);
         $database->storeProducto($datos);
 

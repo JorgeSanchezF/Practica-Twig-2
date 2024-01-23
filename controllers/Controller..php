@@ -5,6 +5,6 @@ interface Controller
     public static function create();
     public static function save();
     public static function edit();
-    public static function update($id, $datos);
+    public static function update();
     public static function destroy();
 }

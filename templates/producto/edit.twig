@@ -2,19 +2,22 @@
 
 {% block title %}Editar producto
 {% endblock %}
+
 {% block main %}
 	<h3>Crea un producto</h3>
 	<a href="productos">Atras</a>
-	<form action="update-producto?id={{id}}" method="post">
-		<input type="hidden" name="id" id="id">
+
+	<form action='update-producto' method="post">
+		<input type="hidden" name="id" id="id" value='{{producto.id}}'>
 		<label for="nombre">Nombre:</label>
-		<input type="text" name="nombre" id="nombre">
+		<input type="text" name="nombre" id="nombre" value='{{producto.nombre}}'>
 		<label for="descripcion">Descripcion:</label>
-		<input type="text" name="descripcion" id="descripcion">
+		<input type="text" name="descripcion" id="descripcion" value='{{producto.descripcion}}'>
 		<label for="precio">Precio:</label>
-		<input type="number" name="precio" id="precio">
+		<input type="number" name="precio" id="precio" value='{{producto.precio}}'>
 		<label for="stock">Stock:</label>
-		<input type="number" name="stock" id="stock">
+		<input type="number" name="stock" id="stock" value='{{producto.stock}}'>
 		<button type="submit" class="boton-formulario">Editar</button>
 	</form>
+
 {% endblock %}

@@ -82,8 +82,7 @@ class Database
     public function getProductoById($id)
     {
         $db = $this->conectar();
-        $query = "SELECT * FROM productos WHERE id= " . $id;
-
+        $query = "SELECT * FROM productos WHERE id=" . $id;
         $stmt = $db->prepare($query);
         $stmt->execute();
 
@@ -104,7 +103,7 @@ class Database
         $precio = $datos['precio'];
         $stock = $datos['stock'];
         $db = $this->conectar();
-        $query = "INSERT INTO productos(nombre,descripcion,precio,stock) VALUES('" . $nombre . "','" . $descripcion . "','" . $precio . "','" . $stock . "')";
+        $query = "INSERT INTO productos (nombre, descripcion, precio, stock) VALUES ('$nombre', '$descripcion', $precio, $stock)";
 
         $stmt = $db->prepare($query);
         $stmt->execute();
@@ -119,9 +118,11 @@ class Database
         $descripcion = $datos['descripcion'];
         $precio = $datos['precio'];
         $stock = $datos['stock'];
-        
+
+
         $db = $this->conectar();
-        $query = "UPDATE FROM productos(nombre,descripcion,precio,stock)SET(nombre='" . $nombre . "',descripcion='" . $descripcion . ",precio='" . $precio . "','stock='" . $stock . "') WHERE id=" . $id;
+        $query = "UPDATE productos
+        SET nombre = '$nombre',descripcion = '$descripcion',precio = $precio,stock = $stock WHERE id = $id";
         $stmt = $db->prepare($query);
         $stmt->execute();
 

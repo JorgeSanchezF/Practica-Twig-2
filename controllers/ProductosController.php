@@ -40,11 +40,18 @@ class ProductosController implements Controller
     }
     public static function edit()
     {
+        $id = $_GET['id'];
+        $producto = new Producto;
+
+        $devolucion = $producto->findById($id);
+
         echo $GLOBALS['twig']->render(
-            'producto/edit.twig'
+            'producto/edit.twig',
+            ['producto' => $devolucion]
         );
+
     }
-    public static function update($id, $datos)
+    public static function update()
     {
         $id = $_POST['id'];
         $nombre = $_POST['nombre'];
@@ -57,7 +64,7 @@ class ProductosController implements Controller
             'precio' => $precio,
             'stock' => $stock
         ];
-        
+
         $producto = new Producto;
         $producto->updateById($id, $datos);
         ProductosController::index();
