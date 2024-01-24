@@ -1,0 +1,41 @@
+{% extends "plantilla.twig" %}
+
+{% block title %}Clientes
+{% endblock %}
+
+
+{% block main %}
+	<h3>Clientes</h3>
+	<a class="boton-crear" href="crear-cliente">Crear cliente</a>
+
+	<table>
+		<thead>
+			<tr>
+				<th>DNI</th>
+				<th>Nombre</th>
+				<th>Apellido</th>
+				<th>Correo</th>
+				<th>Direccion</th>
+				<th>Acciones</th>
+			</tr>
+		</thead>
+		<tbody>
+			{# recoger lista de productos de la base de datos (hecho) #}
+			{% for i in clientes %}
+				<tr>
+					<td>{{i.nombre}}</td>
+					<td>{{i.apellido}}</td>
+					<td>{{i.correo}}€</td>
+					<td>{{i.direccion}}</td>
+					<td>
+						<a class='botones-tabla' href='editar-cliente?id={{i.id}}'>Editar</a>
+					</td>
+					<td>
+						<a class='botones-tabla' href='eliminar-cliente?id={{i.id}}'>Eliminar</a>
+					</td>
+				</tr>
+
+			{% endfor %}
+		</tbody>
+	</table>
+{% endblock %}

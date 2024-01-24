@@ -62,6 +62,13 @@ class Database
 
         return null;
     }
+    /**
+     * 
+     * 
+     * PRODUCTOS
+     * 
+     * 
+     */
     public function sortProductosByPrecio()
     {
         $db = $this->conectar();
@@ -149,6 +156,7 @@ class Database
     }
     public function storeProducto($datos)
     {
+        $dni = $datos['dni'];
         $nombre = $datos['nombre'];
         $descripcion = $datos['descripcion'];
         $precio = $datos['precio'];
@@ -165,6 +173,7 @@ class Database
     }
     public function updateProducto($id, $datos)
     {
+        $dni = $datos['dni'];
         $nombre = $datos['nombre'];
         $descripcion = $datos['descripcion'];
         $precio = $datos['precio'];
@@ -193,4 +202,94 @@ class Database
         $db = $this->desconectar();
 
     }
+    /**
+     * 
+     * 
+     * CLIENTES
+     * 
+     * 
+     */
+    public function getClientes()
+    {
+        $db = $this->conectar();
+        $query = "SELECT * FROM clientes";
+        $stmt = $db->prepare($query);
+        $stmt->execute();
+
+        // Desconectar
+        $db = $this->desconectar();
+
+        // Transforma a clave-valor
+        $devolver = $stmt->fetchAll();
+
+        // Ejecutar
+        // Devolver resultados
+        return $devolver;
+    }
+    public function getClienteById($id)
+    {
+        $db = $this->conectar();
+        $query = "SELECT * FROM clientes WHERE id=" . $id;
+        $stmt = $db->prepare($query);
+        $stmt->execute();
+
+        // Desconectar
+        $db = $this->desconectar();
+
+        // Transforma a clave-valor
+        $devolver = $stmt->fetch();
+
+        // Ejecutar
+        // Devolver resultados
+        return $devolver;
+    }
+    public function storeCliente($datos)
+    {
+        $dni = $datos['dni'];
+        $nombre = $datos['nombre'];
+        $apellido = $datos['apellido'];
+        $correo = $datos['correo'];
+        $direccion = $datos['direccion'];
+
+        $db = $this->conectar();
+        $query = "INSERT INTO clientes (nombre, apellido, correo, direccion) VALUES ('$nombre', '$apellido', $correo, $direccion)";
+
+        $stmt = $db->prepare($query);
+        $stmt->execute();
+
+        // Desconectar
+        $db = $this->desconectar();
+
+    }
+    public function updateCliente($id, $datos)
+    {
+        $dni = $datos['dni'];
+        $nombre = $datos['nombre'];
+        $apellido = $datos['apellido'];
+        $correo = $datos['correo'];
+        $direccion = $datos['direccion'];
+
+        $db = $this->conectar();
+        $query = "UPDATE clientes
+        SET nombre = '$nombre',apellido = '$apellido',correo = $correo,direccion = $direccion WHERE id = $id";
+        $stmt = $db->prepare($query);
+        $stmt->execute();
+
+        // Desconectar
+        $db = $this->desconectar();
+
+    }
+    public function destroyCliente($id)
+    {
+        $db = $this->conectar();
+        $query = "DELETE FROM clientes WHERE id=" . $id;
+
+        $stmt = $db->prepare($query);
+        $stmt->execute();
+
+        // Desconectar
+        $db = $this->desconectar();
+
+    }
+
 }
