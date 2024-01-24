@@ -3,35 +3,30 @@ require_once 'Controller..php';
 require_once 'models/Producto.php';
 class ProductosController implements Controller
 {
+    /**
+     * @param float $a
+     * @param float $b
+     * 
+     */
+
     public static function index()
     {
-        //funcion que se encarga de comparar los productos dentro del array
-        function compararPorPrecio($a, $b)
-        {
-            return floatval($a['precio']) - floatval($b['precio']);
-        }
 
-        //funcion que se encarga de comparar los productos dentro del array
-        function compararPorNombre($a, $b)
-        {
-            return strcmp($a['nombre'], $b['nombre']);
-        }
-        //funcion que se encarga de comparar los productos dentro del array
-        function compararPorStock($a, $b)
-        {
-            return floatval($b['precio']) - floatval($a['stock']);
-        }
         $producto = new Producto;
-        $productos = $producto->findAll();
-        //si hay variable filtro en la url comprueba si es de precio o de nombre y llama a funcion
-        if (isset($_GET['filtro']) && $_GET['filtro'] == 'precio') {
-            usort($productos, 'compararPorPrecio');
-        }
-        if (isset($_GET['filtro']) && $_GET['filtro'] == 'nombre') {
-            usort($productos, 'compararPorNombre');
-        }
-        if (isset($_GET['filtro']) && $_GET['filtro'] == 'stock') {
-            usort($productos, 'compararPorStock');
+
+        //si hay variable filtro en la url comprueba si es de precio o de nombre y llama a funcion de modelo Producto
+        if (isset($_GET['filtro'])) {
+            if ($_GET['filtro'] == 'precio') {
+                $productos = $producto->sortByPrecio();
+            }
+            if ($_GET['filtro'] == 'nombre') {
+                $productos = $producto->sortByNombre();
+            }
+            if ($_GET['filtro'] == 'stock') {
+                $productos = $producto->sortByStock();
+            }
+        } else {
+            $productos = $producto->findAll();
         }
 
         echo $GLOBALS['twig']->render(

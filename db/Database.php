@@ -62,6 +62,57 @@ class Database
 
         return null;
     }
+    public function sortProductosByPrecio()
+    {
+        $db = $this->conectar();
+        $query = "SELECT * FROM productos ORDER BY precio ASC";
+        $stmt = $db->prepare($query);
+        $stmt->execute();
+
+        // Desconectar
+        $db = $this->desconectar();
+
+        // Transforma a clave-valor
+        $devolver = $stmt->fetchAll();
+
+        // Ejecutar
+        // Devolver resultados
+        return $devolver;
+    }
+    public function sortProductosByNombre()
+    {
+        $db = $this->conectar();
+        $query = "SELECT * FROM productos ORDER BY nombre ASC";
+        $stmt = $db->prepare($query);
+        $stmt->execute();
+
+        // Desconectar
+        $db = $this->desconectar();
+
+        // Transforma a clave-valor
+        $devolver = $stmt->fetchAll();
+
+        // Ejecutar
+        // Devolver resultados
+        return $devolver;
+    }
+    public function sortProductosByStock()
+    {
+        $db = $this->conectar();
+        $query = "SELECT * FROM productos ORDER BY stock DESC";
+        $stmt = $db->prepare($query);
+        $stmt->execute();
+
+        // Desconectar
+        $db = $this->desconectar();
+
+        // Transforma a clave-valor
+        $devolver = $stmt->fetchAll();
+
+        // Ejecutar
+        // Devolver resultados
+        return $devolver;
+    }
     public function getProductos()
     {
         $db = $this->conectar();

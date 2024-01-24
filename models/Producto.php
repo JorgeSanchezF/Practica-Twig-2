@@ -63,6 +63,24 @@ class Producto implements Model
     {
         $this->stock = $stock;
     }
+    public function sortByNombre()
+    {
+        $database = new Database("root", "", "localhost", 3308);
+        $devover = $database->sortProductosByNombre();
+        return $devover;
+    }
+    public function sortByPrecio()
+    {
+        $database = new Database("root", "", "localhost", 3308);
+        $devover = $database->sortProductosByPrecio();
+        return $devover;
+    }
+    public function sortByStock()
+    {
+        $database = new Database("root", "", "localhost", 3308);
+        $devover = $database->sortProductosByStock();
+        return $devover;
+    }
 
     public function findAll()
     {
