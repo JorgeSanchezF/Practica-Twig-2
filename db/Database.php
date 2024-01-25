@@ -367,7 +367,6 @@ class Database
         $db = $this->conectar();
         $query = "SELECT nombre FROM estado JOIN pedido_has_estado ON estado.id=pedido_has_estado.id_estado JOIN pedidos ON pedidos.id=pedido_has_estado.id_pedido WHERE pedidos.id=$id";
 
-
         $stmt = $db->prepare($query);
         $stmt->execute();
 
