@@ -1,0 +1,18 @@
+{% block main %}
+	<a href="pedidos">Atras</a>
+	<div>
+
+		<h3>Pedido Nº:
+			{{pedido.id}}</h3>
+		{#id de pedido#}
+		<ul>
+
+			<li>{{pedido.fecha}}</li>
+			<li>{{pedido.id_cliente}}</li>
+			<li>{{pedido.direccion_entrega}}</li>
+			<li>{{pedido.total}}€</li>
+			<li>Estado:
+				{{datos.nombre}}</li>
+		</ul>
+	</div>
+{% endblock %}

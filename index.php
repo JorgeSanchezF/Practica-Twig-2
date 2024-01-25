@@ -44,7 +44,8 @@ $route->get('/', [IndexController::class, 'index'])
     ->post('/guardar-pedido', [PedidosController::class, 'save'])
     ->get('/editar-pedido', [PedidosController::class, 'edit'])
     ->post('/update-pedido', [PedidosController::class, 'update'])
-    ->get('/eliminar-pedido', [PedidosController::class, 'destroy']);
+    ->get('/eliminar-pedido', [PedidosController::class, 'destroy'])
+    ->get('/detalles-pedido', [PedidosController::class, 'estado']);
 
 $path = parse_url($_SERVER['REQUEST_URI'])['path'];
 $path = explode("/", $path);

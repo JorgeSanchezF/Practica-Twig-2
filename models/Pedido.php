@@ -96,5 +96,11 @@ class Pedido implements Model
         $database->destroyPedido($id);
 
     }
+    public function estado($id)
+    {
+        $database = new Database("root", "", "localhost", 3308);
+        $devolver = $database->estadoPedido($id);
+        return $devolver;
+    }
 
 }

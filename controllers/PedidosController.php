@@ -12,6 +12,22 @@ class PedidosController implements Controller
             ['pedidos' => $pedidos]
         );
     }
+    public static function estado()
+    {
+        $id = $_GET['id'];
+        $pedido = new Pedido;
+        $datosPedido = $pedido->findById($id);
+
+        $estado = $pedido->estado($id);
+        
+        echo $GLOBALS['twig']->render(
+            'pedido/estado.twig',
+            [
+                'pedido' => $datosPedido,
+                'datos' => $estado
+            ]
+        );
+    }
     public static function create()
     {
         echo $GLOBALS['twig']->render(
