@@ -1,0 +1,23 @@
+{% extends "plantilla.twig" %}
+
+{% block title %}Editar pedido
+{% endblock %}
+
+{% block main %}
+	<h3>Edita un pedido</h3>
+	<a href="pedidos">Atras</a>
+
+	<form action='update-pedido' method="post">
+		<input type="hidden" name="id" id="id" value='{{pedido.id}}'>
+		<label for="fecha">Fecha:</label>
+		<input type="date" name="fecha" id="fecha" value='{{pedido.fecha}}'>
+		<label for="id_cliente">Id cliente:</label>
+		<input type="number" name="id_cliente" id="id_cliente" value='{{pedido.id_cliente}}'>
+		<label for="direccion_entrega">Direccion entrega:</label>
+		<input type="text" name="direccion_entrega" id="direccion_entrega" value='{{pedido.direccion_entrega}}'>
+		<label for="total">Total:</label>
+		<input type="number" name="total" id="total" value='{{pedido.total}}'>
+		<button type="submit" class="boton-formulario">Editar</button>
+	</form>
+
+{% endblock %}

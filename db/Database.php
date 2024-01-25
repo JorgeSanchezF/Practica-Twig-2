@@ -156,7 +156,7 @@ class Database
     }
     public function storeProducto($datos)
     {
-        $dni = $datos['dni'];
+
         $nombre = $datos['nombre'];
         $descripcion = $datos['descripcion'];
         $precio = $datos['precio'];
@@ -173,7 +173,7 @@ class Database
     }
     public function updateProducto($id, $datos)
     {
-        $dni = $datos['dni'];
+
         $nombre = $datos['nombre'];
         $descripcion = $datos['descripcion'];
         $precio = $datos['precio'];
@@ -252,7 +252,7 @@ class Database
         $direccion = $datos['direccion'];
 
         $db = $this->conectar();
-        $query = "INSERT INTO clientes (nombre, apellido, correo, direccion) VALUES ('$nombre', '$apellido', $correo, $direccion)";
+        $query = "INSERT INTO clientes (dni ,nombre, apellido, correo, direccion) VALUES ('$dni', '$nombre', '$apellido', '$correo', '$direccion')";
 
         $stmt = $db->prepare($query);
         $stmt->execute();
@@ -270,8 +270,7 @@ class Database
         $direccion = $datos['direccion'];
 
         $db = $this->conectar();
-        $query = "UPDATE clientes
-        SET nombre = '$nombre',apellido = '$apellido',correo = $correo,direccion = $direccion WHERE id = $id";
+        $query = "UPDATE clientes SET nombre = '$nombre',apellido = '$apellido',correo = '$correo',direccion = '$direccion' WHERE id = $id";
         $stmt = $db->prepare($query);
         $stmt->execute();
 
@@ -291,5 +290,76 @@ class Database
         $db = $this->desconectar();
 
     }
+    /**
+     * 
+     * PEDIDOS
+     * 
+     */
+    public function getPedidos()
+    {
+        $db = $this->conectar();
+        $query = "SELECT * FROM pedidos";
 
+        $stmt = $db->prepare($query);
+        $stmt->execute();
+        $devolver = $stmt->fetchAll();
+        // Desconectar
+        $db = $this->desconectar();
+        return $devolver;
+    }
+    public function getPedidoById($id)
+    {
+        $db = $this->conectar();
+        $query = "SELECT * FROM pedidos WHERE id= $id";
+
+        $stmt = $db->prepare($query);
+        $stmt->execute();
+        $devolver = $stmt->fetch();
+        // Desconectar
+        $db = $this->desconectar();
+        return $devolver;
+    }
+    public function storePedido($datos)
+    {
+        $fecha = $datos['fecha'];
+        $id_cliente = $datos['id_cliente'];
+        $direccion_entrega = $datos['direccion_entrega'];
+        $total = $datos['total'];
+        $db = $this->conectar();
+        $query = "INSERT INTO pedidos(fecha, id_cliente, direccion_entrega, total)VALUES('$fecha', $id_cliente,'$direccion_entrega', $total)";
+
+        $stmt = $db->prepare($query);
+        $stmt->execute();
+
+        // Desconectar
+        $db = $this->desconectar();
+    }
+    public function updatePedido($id, $datos)
+    {
+        $fecha = $datos['fecha'];
+        $id_cliente = $datos['id_cliente'];
+        $direccion_entrega = $datos['direccion_entrega'];
+        $total = $datos['total'];
+
+        $db = $this->conectar();
+        $query = "UPDATE pedidos SET fecha = '$fecha',id_cliente = $id_cliente,direccion_entrega = '$direccion_entrega',total = $total WHERE id = $id";
+        $stmt = $db->prepare($query);
+        $stmt->execute();
+
+        // Desconectar
+        $db = $this->desconectar();
+
+    }
+    public function destroyPedido($id)
+    {
+        $db = $this->conectar();
+        $query = "DELETE FROM pedidos WHERE id=" . $id;
+
+        $stmt = $db->prepare($query);
+        $stmt->execute();
+
+        // Desconectar
+        $db = $this->desconectar();
+
+    }
 }

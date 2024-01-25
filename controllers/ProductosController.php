@@ -3,11 +3,7 @@ require_once 'Controller..php';
 require_once 'models/Producto.php';
 class ProductosController implements Controller
 {
-    /**
-     * @param float $a
-     * @param float $b
-     * 
-     */
+
 
     public static function index()
     {

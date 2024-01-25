@@ -33,7 +33,18 @@ $route->get('/', [IndexController::class, 'index'])
     ->get('/editar-producto', [ProductosController::class, 'edit'])
     ->post('/update-producto', [ProductosController::class, 'update'])
     ->get('/eliminar-producto', [ProductosController::class, 'destroy'])
-    ->get('/clientes', [ClientesController::class, 'index']);
+    ->get('/clientes', [ClientesController::class, 'index'])
+    ->get('/crear-cliente', [ClientesController::class, 'create'])
+    ->post('/guardar-cliente', [ClientesController::class, 'save'])
+    ->get('/editar-cliente', [ClientesController::class, 'edit'])
+    ->post('/update-cliente', [ClientesController::class, 'update'])
+    ->get('/eliminar-cliente', [ClientesController::class, 'destroy'])
+    ->get('/pedidos', [PedidosController::class, 'index'])
+    ->get('/crear-pedido', [PedidosController::class, 'create'])
+    ->post('/guardar-pedido', [PedidosController::class, 'save'])
+    ->get('/editar-pedido', [PedidosController::class, 'edit'])
+    ->post('/update-pedido', [PedidosController::class, 'update'])
+    ->get('/eliminar-pedido', [PedidosController::class, 'destroy']);
 
 $path = parse_url($_SERVER['REQUEST_URI'])['path'];
 $path = explode("/", $path);

@@ -1,0 +1,42 @@
+{% extends "plantilla.twig" %}
+
+{% block title %}Pedidos
+{% endblock %}
+
+
+{% block main %}
+	<h3>Pedidos</h3>
+	<a class="boton-crear" href="crear-pedido">Crear pedido</a>
+	<a href="pedidos?filtro=precio" class="boton-filtro">Ordenar por Precio de bajo a alto</a>
+	<a href="pedidos?filtro=nombre" class="boton-filtro">Ordenar por Nombre</a>
+	<a href="pedidos?filtro=stock" class="boton-filtro">Ordenar por Stock</a>
+	<table>
+		<thead>
+			<tr>
+				<th>Fecha</th>
+				<th>Id cliente</th>
+				<th>Direccion entrega</th>
+				<th>Total</th>
+				<th>Acciones</th>
+			</tr>
+		</thead>
+		<tbody>
+			{# recoger lista de productos de la base de datos (hecho) #}
+			{% for i in pedidos %}
+				<tr>
+					<td>{{i.fecha}}</td>
+					<td>{{i.id_cliente}}</td>
+					<td>{{i.direccion_entrega}}</td>
+					<td>{{i.total}}€</td>
+					<td>
+						<a class='botones-tabla' href='editar-pedido?id={{i.id}}'>Editar</a>
+					</td>
+					<td>
+						<a class='botones-tabla' href='eliminar-pedido?id={{i.id}}'>Eliminar</a>
+					</td>
+				</tr>
+
+			{% endfor %}
+		</tbody>
+	</table>
+{% endblock %}

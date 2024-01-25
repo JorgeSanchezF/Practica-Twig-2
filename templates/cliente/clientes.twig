@@ -23,9 +23,10 @@
 			{# recoger lista de productos de la base de datos (hecho) #}
 			{% for i in clientes %}
 				<tr>
+					<td>{{i.dni}}</td>
 					<td>{{i.nombre}}</td>
 					<td>{{i.apellido}}</td>
-					<td>{{i.correo}}€</td>
+					<td>{{i.correo}}</td>
 					<td>{{i.direccion}}</td>
 					<td>
 						<a class='botones-tabla' href='editar-cliente?id={{i.id}}'>Editar</a>

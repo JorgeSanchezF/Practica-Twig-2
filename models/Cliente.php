@@ -65,8 +65,8 @@ class Cliente implements Model
     public function findAll()
     {
         $database = new Database("root", "", "localhost", 3308);
-        $devover = $database->getClientes();
-        return $devover;
+        $devolver = $database->getClientes();
+        return $devolver;
     }
     public function findById($id)
     {
