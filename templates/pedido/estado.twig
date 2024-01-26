@@ -1,18 +1,27 @@
+{% extends "plantilla.twig" %}
 {% block main %}
-	<a href="pedidos">Atras</a>
-	<div>
+	<div class="container mt-4">
+		<a href="pedidos" class="btn btn-secondary mb-3">Atrás</a>
 
-		<h3>Pedido Nº:
-			{{pedido.id}}</h3>
-		{#id de pedido#}
-		<ul>
-
-			<li>{{pedido.fecha}}</li>
-			<li>{{pedido.id_cliente}}</li>
-			<li>{{pedido.direccion_entrega}}</li>
-			<li>{{pedido.total}}€</li>
-			<li>Estado:
-				{{datos.nombre}}</li>
-		</ul>
+		<div class="card">
+			<div class="card-header">
+				<h3 class="card-title">Pedido Nº:
+					{{ pedido.id }}</h3>
+			</div>
+			<div class="card-body">
+				<ul class="list-group">
+					<li class="list-group-item">Fecha:
+						{{ pedido.fecha }}</li>
+					<li class="list-group-item">Id Cliente:
+						{{ pedido.id_cliente }}</li>
+					<li class="list-group-item">Dirección de entrega:
+						{{ pedido.direccion_entrega }}</li>
+					<li class="list-group-item">Total:
+						{{ pedido.total }}€</li>
+					<li class="list-group-item">Estado:
+						{{ datos.nombre }}</li>
+				</ul>
+			</div>
+		</div>
 	</div>
 {% endblock %}

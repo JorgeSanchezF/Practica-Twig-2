@@ -2,18 +2,30 @@
 
 {% block title %}Crear pedido
 {% endblock %}
+
 {% block main %}
-	<h3>Crea un pedido</h3>
-	<a href="pedidos">Atras</a>
-	<form action="guardar-pedido" method="post">
-		<label for="fecha">Fecha:</label>
-		<input type="date" name="fecha" id="fecha">
-		<label for="id_cliente">Idcliente:</label>
-		<input type="number" name="id_cliente" id="id_cliente">
-		<label for="direccion_entrega">Direccion entrega:</label>
-		<input type="text" name="direccion_entrega" id="direccion_entrega">
-		<label for="total">Total:</label>
-		<input type="number" name="total" id="total">
-		<button type="submit" class="boton-formulario">Crear</button>
-	</form>
+	<div class="container mt-4">
+		<h3>Crea un pedido</h3>
+		<a href="pedidos" class="btn btn-secondary mb-3">Atrás</a>
+
+		<form action="guardar-pedido" method="post">
+			<div class="mb-3">
+				<label for="fecha" class="form-label">Fecha:</label>
+				<input type="date" name="fecha" id="fecha" class="form-control">
+			</div>
+			<div class="mb-3">
+				<label for="id_cliente" class="form-label">Id Cliente:</label>
+				<input type="number" name="id_cliente" id="id_cliente" class="form-control">
+			</div>
+			<div class="mb-3">
+				<label for="direccion_entrega" class="form-label">Dirección entrega:</label>
+				<input type="text" name="direccion_entrega" id="direccion_entrega" class="form-control">
+			</div>
+			<div class="mb-3">
+				<label for="total" class="form-label">Total:</label>
+				<input type="number" name="total" id="total" class="form-control">
+			</div>
+			<button type="submit" class="btn btn-primary">Crear</button>
+		</form>
+	</div>
 {% endblock %}

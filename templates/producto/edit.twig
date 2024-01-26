@@ -4,20 +4,30 @@
 {% endblock %}
 
 {% block main %}
-	<h3>Edita un producto</h3>
-	<a href="productos">Atras</a>
+	<div class="container mt-4">
+		<h3>Edita un producto</h3>
+		<a href="productos" class="btn btn-secondary mb-3">Atrás</a>
 
-	<form action='update-producto' method="post">
-		<input type="hidden" name="id" id="id" value='{{producto.id}}'>
-		<label for="nombre">Nombre:</label>
-		<input type="text" name="nombre" id="nombre" value='{{producto.nombre}}'>
-		<label for="descripcion">Descripcion:</label>
-		<input type="text" name="descripcion" id="descripcion" value='{{producto.descripcion}}'>
-		<label for="precio">Precio:</label>
-		<input type="number" name="precio" id="precio" value='{{producto.precio}}'>
-		<label for="stock">Stock:</label>
-		<input type="number" name="stock" id="stock" value='{{producto.stock}}'>
-		<button type="submit" class="boton-formulario">Editar</button>
-	</form>
+		<form action='update-producto' method="post">
+			<input type="hidden" name="id" id="id" value='{{ producto.id }}'>
 
+			<div class="mb-3">
+				<label for="nombre" class="form-label">Nombre:</label>
+				<input type="text" name="nombre" id="nombre" class="form-control" value='{{ producto.nombre }}'>
+			</div>
+			<div class="mb-3">
+				<label for="descripcion" class="form-label">Descripción:</label>
+				<input type="text" name="descripcion" id="descripcion" class="form-control" value='{{ producto.descripcion }}'>
+			</div>
+			<div class="mb-3">
+				<label for="precio" class="form-label">Precio:</label>
+				<input type="number" name="precio" id="precio" class="form-control" value='{{ producto.precio }}'>
+			</div>
+			<div class="mb-3">
+				<label for="stock" class="form-label">Stock:</label>
+				<input type="number" name="stock" id="stock" class="form-control" value='{{ producto.stock }}'>
+			</div>
+			<button type="submit" class="btn btn-primary">Editar</button>
+		</form>
+	</div>
 {% endblock %}

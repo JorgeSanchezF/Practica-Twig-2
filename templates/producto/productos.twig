@@ -3,40 +3,41 @@
 {% block title %}Productos
 {% endblock %}
 
-
 {% block main %}
-	<h3>Productos</h3>
-	<a class="boton-crear" href="crear-producto">Crear producto</a>
-	<a href="productos?filtro=precio" class="boton-filtro">Ordenar por Precio de bajo a alto</a>
-	<a href="productos?filtro=nombre" class="boton-filtro">Ordenar por Nombre</a>
-	<a href="productos?filtro=stock" class="boton-filtro">Ordenar por Stock</a>
-	<table>
-		<thead>
-			<tr>
-				<th>Nombre</th>
-				<th>Descripcion</th>
-				<th>Precio</th>
-				<th>Stock</th>
-				<th>Acciones</th>
-			</tr>
-		</thead>
-		<tbody>
-			{# recoger lista de productos de la base de datos (hecho) #}
-			{% for i in productos %}
-				<tr>
-					<td>{{i.nombre}}</td>
-					<td>{{i.descripcion}}</td>
-					<td>{{i.precio}}€</td>
-					<td>{{i.stock}}</td>
-					<td>
-						<a class='botones-tabla' href='editar-producto?id={{i.id}}'>Editar</a>
-					</td>
-					<td>
-						<a class='botones-tabla' href='eliminar-producto?id={{i.id}}'>Eliminar</a>
-					</td>
-				</tr>
+	<div class="container mt-4">
+		<h3>Productos</h3>
+		<a href="crear-producto" class="btn btn-primary mb-3">Crear producto</a>
+		<a href="productos?filtro=precio" class="btn btn-secondary boton-filtro">Ordenar por Precio de bajo a alto</a>
+		<a href="productos?filtro=nombre" class="btn btn-secondary boton-filtro">Ordenar por Nombre</a>
+		<a href="productos?filtro=stock" class="btn btn-secondary boton-filtro">Ordenar por Stock</a>
 
-			{% endfor %}
-		</tbody>
-	</table>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Nombre</th>
+					<th>Descripción</th>
+					<th>Precio</th>
+					<th>Stock</th>
+					<th>Acciones</th>
+				</tr>
+			</thead>
+			<tbody>
+				{# Recoger lista de productos de la base de datos (hecho) #}
+				{% for producto in productos %}
+					<tr>
+						<td>{{ producto.nombre }}</td>
+						<td>{{ producto.descripcion }}</td>
+						<td>{{ producto.precio }}€</td>
+						<td>{{ producto.stock }}</td>
+						<td>
+							<a href='editar-producto?id={{ producto.id }}' class='btn btn-warning btn-sm'>Editar</a>
+						</td>
+						<td>
+							<a href='eliminar-producto?id={{ producto.id }}' class='btn btn-danger btn-sm'>Eliminar</a>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
 {% endblock %}

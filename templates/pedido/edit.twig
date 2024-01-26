@@ -4,23 +4,34 @@
 {% endblock %}
 
 {% block main %}
-	<h3>Edita un pedido</h3>
-	<a href="pedidos">Atras</a>
+	<div class="container mt-4">
+		<h3>Edita un pedido</h3>
+		<a href="pedidos" class="btn btn-secondary mb-3">Atrás</a>
 
-	<form action='update-pedido' method="post">
-		<input type="hidden" name="id" id="id" value='{{pedido.id}}'>
-		<label for="fecha">Fecha:</label>
-		<input type="date" name="fecha" id="fecha" value='{{pedido.fecha}}'>
-		<label for="id_cliente">Id cliente:</label>
-		<input type="number" name="id_cliente" id="id_cliente" value='{{pedido.id_cliente}}'>
-		<label for="direccion_entrega">Direccion entrega:</label>
-		<input type="text" name="direccion_entrega" id="direccion_entrega" value='{{pedido.direccion_entrega}}'>
-		<label for="estado">Estado de pedido:
-		</label>
-		<input type="text" name="estado" id="estado" value='{{datos.nombre}}'>
-		<label for="total">Total:</label>
-		<input type="number" name="total" id="total" value='{{pedido.total}}'>
-		<button type="submit" class="boton-formulario">Editar</button>
-	</form>
+		<form action='update-pedido' method="post">
+			<input type="hidden" name="id" id="id" value='{{ pedido.id }}'>
 
+			<div class="mb-3">
+				<label for="fecha" class="form-label">Fecha:</label>
+				<input type="date" name="fecha" id="fecha" class="form-control" value='{{ pedido.fecha }}'>
+			</div>
+			<div class="mb-3">
+				<label for="id_cliente" class="form-label">Id cliente:</label>
+				<input type="number" name="id_cliente" id="id_cliente" class="form-control" value='{{ pedido.id_cliente }}'>
+			</div>
+			<div class="mb-3">
+				<label for="direccion_entrega" class="form-label">Dirección entrega:</label>
+				<input type="text" name="direccion_entrega" id="direccion_entrega" class="form-control" value='{{ pedido.direccion_entrega }}'>
+			</div>
+			<div class="mb-3">
+				<label for="estado" class="form-label">Estado de pedido:</label>
+				<input type="text" name="estado" id="estado" class="form-control" value='{{ datos.nombre }}'>
+			</div>
+			<div class="mb-3">
+				<label for="total" class="form-label">Total:</label>
+				<input type="number" name="total" id="total" class="form-control" value='{{ pedido.total }}'>
+			</div>
+			<button type="submit" class="btn btn-primary">Editar</button>
+		</form>
+	</div>
 {% endblock %}

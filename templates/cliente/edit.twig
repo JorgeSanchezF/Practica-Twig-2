@@ -1,22 +1,37 @@
 {% extends "plantilla.twig" %}
-{% block title %}Editar cliente
-{% endblock %}
-{% block main %}
-	<h3>Editar un producto</h3>
-	<a href="clientes">Atras</a>
 
-	<form action='update-cliente' method="post">
-		<input type="hidden" name="id" id="id" value='{{cliente.id}}'>
-		<label for="dni">Dni:</label>
-		<input type="text" name="dni" id="dni" value='{{cliente.dni}}'>
-		<label for="nombre">Nombre:</label>
-		<input type="text" name="nombre" id="nombre" value='{{cliente.nombre}}'>
-		<label for="apellido">Apellido:</label>
-		<input type="text" name="apellido" id="apellido" value='{{cliente.apellido}}'>
-		<label for="correo">Correo:</label>
-		<input type="text" name="correo" id="correo" value='{{cliente.correo}}'>
-		<label for="direccion">direccion:</label>
-		<input type="text" name="direccion" id="direccion" value='{{cliente.direccion}}'>
-		<button type="submit" class="boton-formulario">Editar</button>
-	</form>
+{% block title %}Editar cliente{% endblock %}
+
+{% block main %}
+    <div class="container mt-4">
+        <h3>Editar un cliente</h3>
+        <a href="clientes" class="btn btn-secondary mb-3">Atrás</a>
+
+        <form action='update-cliente' method="post">
+            <input type="hidden" name="id" id="id" value='{{ cliente.id }}'>
+            
+            <div class="mb-3">
+                <label for="dni" class="form-label">DNI:</label>
+                <input type="text" name="dni" id="dni" class="form-control" value='{{ cliente.dni }}'>
+            </div>
+            <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre:</label>
+                <input type="text" name="nombre" id="nombre" class="form-control" value='{{ cliente.nombre }}'>
+            </div>
+            <div class="mb-3">
+                <label for="apellido" class="form-label">Apellido:</label>
+                <input type="text" name="apellido" id="apellido" class="form-control" value='{{ cliente.apellido }}'>
+            </div>
+            <div class="mb-3">
+                <label for="correo" class="form-label">Correo:</label>
+                <input type="text" name="correo" id="correo" class="form-control" value='{{ cliente.correo }}'>
+            </div>
+            <div class="mb-3">
+                <label for="direccion" class="form-label">Dirección:</label>
+                <input type="text" name="direccion" id="direccion" class="form-control" value='{{ cliente.direccion }}'>
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Editar</button>
+        </form>
+    </div>
 {% endblock %}
