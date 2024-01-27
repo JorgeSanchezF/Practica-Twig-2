@@ -1,4 +1,7 @@
 <?php
+
+use Symfony\Component\VarDumper\VarDumper;
+
 class Database
 {
     private $user;
@@ -319,6 +322,8 @@ class Database
         $db = $this->desconectar();
         return $devolver;
     }
+
+
     public function storePedido($datos)
     {
         $fecha = $datos['fecha'];
@@ -326,12 +331,21 @@ class Database
         $direccion_entrega = $datos['direccion_entrega'];
         $total = $datos['total'];
         $db = $this->conectar();
-        $query = "INSERT INTO pedidos(fecha, id_cliente, direccion_entrega, total)VALUES('$fecha', $id_cliente,'$direccion_entrega', $total)";
-
-        $stmt = $db->prepare($query);
+        $insertPedido = "INSERT INTO pedidos(fecha, id_cliente, direccion_entrega, total)VALUES($fecha, $id_cliente,'$direccion_entrega', $total)";
+        $stmt = $db->prepare($insertPedido);
         $stmt->execute();
-
+        //seleccionar ultimo id de pedido
+        $select = "SELECT MAX(id) FROM pedidos";
+        $stmt = $db->prepare($select);
+        $stmt->execute();
+        $idPedido = $stmt->fetch();
+        $idPedido = $idPedido['MAX(id)'];
+        
+        //insercion entabla pedido has estado
+        $insertEstado = "INSERT INTO pedido_has_estado (id_pedido, id_estado, fecha) VALUES ($idPedido,1,CURRENT_TIMESTAMP)"; //inserta el estado de pedido como en proceso
         // Desconectar
+        $stmt = $db->prepare($insertEstado);
+        $stmt->execute();
         $db = $this->desconectar();
     }
     public function updatePedido($id, $datos)
@@ -340,12 +354,17 @@ class Database
         $id_cliente = $datos['id_cliente'];
         $direccion_entrega = $datos['direccion_entrega'];
         $total = $datos['total'];
+        $estado = $datos['estado'];
 
         $db = $this->conectar();
         $query = "UPDATE pedidos SET fecha = '$fecha',id_cliente = $id_cliente,direccion_entrega = '$direccion_entrega',total = $total WHERE id = $id";
         $stmt = $db->prepare($query);
         $stmt->execute();
 
+        //edita el estado del pedido
+        $query = "UPDATE pedido_has_estado SET id_estado=$estado WHERE id_pedido=$id";
+        $stmt = $db->prepare($query);
+        $stmt->execute();
         // Desconectar
         $db = $this->desconectar();
 

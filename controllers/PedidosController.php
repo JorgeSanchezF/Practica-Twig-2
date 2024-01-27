@@ -74,12 +74,62 @@ class PedidosController implements Controller
         $fecha = $_POST['fecha'];
         $id_cliente = $_POST['id_cliente'];
         $direccion_entrega = $_POST['direccion_entrega'];
+        $estado = $_POST['estado'];
         $total = $_POST['total'];
+
+        switch ($estado) {
+
+            case 'Enviado':
+                $estado_id = 2;
+                break;
+            case 'Entregado':
+                $estado_id = 3;
+                break;
+            case 'Cancelado':
+                $estado_id = 4;
+                break;
+            case 'En preparación':
+                $estado_id = 5;
+                break;
+            case 'En camino':
+                $estado_id = 6;
+                break;
+            case 'Listo para envío':
+                $estado_id = 7;
+                break;
+            case 'En revisión':
+                $estado_id = 8;
+                break;
+            case 'Devolución solicitada':
+                $estado_id = 9;
+                break;
+            case 'Recibido con éxito':
+                $estado_id = 10;
+                break;
+            case 'En espera de pago':
+                $estado_id = 11;
+                break;
+            case 'En revisión técnica':
+                $estado_id = 12;
+                break;
+            case 'En preparación para envío':
+                $estado_id = 13;
+                break;
+            case 'Entregado parcialmente':
+                $estado_id = 14;
+                break;
+            case 'En cuarentena':
+                $estado_id = 15;
+                break;
+            default:
+                $estado_id = 1;
+        }
         $datos = [
             'fecha' => $fecha,
             'id_cliente' => $id_cliente,
             'direccion_entrega' => $direccion_entrega,
-            'total' => $total
+            'total' => $total,
+            'estado' => $estado_id
         ];
         $pedido = new Pedido;
         $pedido->updateById($id, $datos);
