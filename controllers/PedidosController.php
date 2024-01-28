@@ -22,16 +22,17 @@ class PedidosController implements Controller
     }
     public static function save()
     {
-        $fecha = $_POST['fecha'];
+
         $id_cliente = $_POST['id_cliente'];
         $direccion_entrega = $_POST['direccion_entrega'];
         $total = $_POST['total'];
         $datos = [
-            'fecha' => $fecha,
+
             'id_cliente' => $id_cliente,
             'direccion_entrega' => $direccion_entrega,
             'total' => $total
         ];
+
         $pedido = new Pedido;
         $pedido->store($datos);
         PedidosController::index();
@@ -67,6 +68,32 @@ class PedidosController implements Controller
                 'datos' => $estado
             ]
         );
+    }
+    public static function editarEstado()
+    {
+        $id = $_GET['id'];
+        $pedido = new Pedido;
+        $datosPedido = $pedido->findById($id);
+
+        $estado = $pedido->estado($id);
+
+        echo $GLOBALS['twig']->render(
+            'pedido/editarEstado.twig',
+            [
+                'pedido' => $datosPedido,
+                'datos' => $estado
+            ]
+        );
+    }
+    public static function updateEstado()
+    {
+        $id = $_POST['id'];
+        $estado = $_POST['estadoPedido'];
+
+        $pedido = new Pedido;
+        $pedido->updateEstado($id, $estado);
+        PedidosController::index();
+
     }
     public static function update()
     {

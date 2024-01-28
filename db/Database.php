@@ -326,12 +326,13 @@ class Database
 
     public function storePedido($datos)
     {
-        $fecha = $datos['fecha'];
+
         $id_cliente = $datos['id_cliente'];
         $direccion_entrega = $datos['direccion_entrega'];
         $total = $datos['total'];
         $db = $this->conectar();
-        $insertPedido = "INSERT INTO pedidos(fecha, id_cliente, direccion_entrega, total)VALUES($fecha, $id_cliente,'$direccion_entrega', $total)";
+
+        $insertPedido = "INSERT INTO pedidos(fecha, id_cliente, direccion_entrega, total)VALUES(date(now()), $id_cliente,'$direccion_entrega', $total)";
         $stmt = $db->prepare($insertPedido);
         $stmt->execute();
         //seleccionar ultimo id de pedido
@@ -340,7 +341,7 @@ class Database
         $stmt->execute();
         $idPedido = $stmt->fetch();
         $idPedido = $idPedido['MAX(id)'];
-        
+
         //insercion entabla pedido has estado
         $insertEstado = "INSERT INTO pedido_has_estado (id_pedido, id_estado, fecha) VALUES ($idPedido,1,CURRENT_TIMESTAMP)"; //inserta el estado de pedido como en proceso
         // Desconectar
@@ -394,5 +395,16 @@ class Database
         // Desconectar
         $db = $this->desconectar();
         return $devolver;
+    }
+    public function updateEstado($id, $estado)
+    {
+        $db = $this->conectar();
+        $query = "UPDATE pedido_has_estado SET id_estado=$estado WHERE id_pedido=$id";
+
+        $stmt = $db->prepare($query);
+        $stmt->execute();
+
+        // Desconectar
+        $db = $this->desconectar();
     }
 }

@@ -102,5 +102,11 @@ class Pedido implements Model
         $devolver = $database->estadoPedido($id);
         return $devolver;
     }
+    public function updateEstado($id, $estado)
+    {
+        $database = new Database("root", "", "localhost", 3308);
+        $devolver = $database->updateEstado($id, $estado);
+        return $devolver;
+    }
 
 }

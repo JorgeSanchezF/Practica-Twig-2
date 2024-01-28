@@ -1,0 +1,30 @@
+{% extends "plantilla.twig" %}
+{% block main %}
+	<div class="container mt-4">
+		<a href="pedidos" class="btn btn-secondary mb-3">Atrás</a>
+
+		<form action='update-estado' method="post">
+			<input type="hidden" name="id" id="id" value='{{ pedido.id }}'>
+			<div class="mb-3">
+				<label for="nombre" class="form-label">Estaado de pedido:</label>
+				<select class="form-select" id="estadoPedido" name="estadoPedido">
+					<option value="2">Enviado</option>
+					<option value="3">Entregado</option>
+					<option value="4">Cancelado</option>
+					<option value="5">En preparación</option>
+					<option value="6">En camino</option>
+					<option value="7">Listo para envío</option>
+					<option value="8">En revisión</option>
+					<option value="9">Devolución solicitada</option>
+					<option value="10">Recibido con éxito</option>
+					<option value="11">En espera de pago</option>
+					<option value="12">En revisión técnica</option>
+					<option value="13">En preparación para envío</option>
+					<option value="14">Entregado parcialmente</option>
+					<option value="15">En cuarentena</option>
+				</select>
+			</div>
+			<button type="submit" class="btn btn-primary">Editar</button>
+		</form>
+	</div>
+{% endblock %}
